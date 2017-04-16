@@ -1,0 +1,13 @@
+html, body {
+  height: 100%;
+}
+
+#app {
+  position: relative;
+  height: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 460px;
+  overflow-x: hidden;
+  box-shadow: 0 0 5px 5px #aaa;
+}

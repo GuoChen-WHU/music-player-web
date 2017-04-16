@@ -1,0 +1,11 @@
+.MiniPlayer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.avatar {
+  width: 64px;
+  height: 64px;
+}
