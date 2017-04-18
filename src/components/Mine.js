@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Mine = () => (
-  <div>
+  <div className="container-fluid">
     <div className="list-group">
       <button type="button" className="list-group-item">本地音乐</button>
       <button type="button" className="list-group-item">最近播放</button>

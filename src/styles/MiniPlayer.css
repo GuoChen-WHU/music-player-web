@@ -9,3 +9,26 @@
   width: 64px;
   height: 64px;
 }
+
+.song-info {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.progress-slim {
+  height: 5px;
+  cursor: pointer;
+}
+
+.total {
+  position: absolute;
+  right: 15px;
+}
+
+.progress {
+  margin-bottom: 0;
+}
+
+.btn-play {
+  margin-top: 15px;
+}

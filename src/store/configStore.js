@@ -4,7 +4,12 @@ import rootReducer from '../reducers';
 const initState = {
   isSidebarExpanded: false,
   player: {
-    time: '00:00',
+    id: '7264117',
+    song: '信仰',
+    singer: '张信哲',
+    image: 'http://imgcache.qq.com/music/photo/album_300/1/300_albumpic_1201_0.jpg',
+    time: 0,
+    total: 253,
     paused: true
   }
 };

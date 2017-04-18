@@ -21,9 +21,6 @@ const Navbar = ({ isExpanded, toggleSidebar }) => (
             <Link to="/Explore">发现</Link>
           </li>
         </ul>
-        <ul className="nav navbar-nav navbar-right">
-          <li><a href="#">搜索</a></li>
-        </ul>        
       </div>
     </div>
   </nav>

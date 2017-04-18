@@ -2,7 +2,10 @@ import { combineReducers } from 'redux';
 import { 
   TOGGLE_SIDEBAR, 
   TOGGLE_PAUSED,
-  SET_TIME 
+  SET_TIME,
+  SET_TOTALTIME,
+  SET_SONGINFO,
+  SET_RESULTLIST
 } from '../actions';
 
 const isSidebarExpanded = (state = false, action) => {
@@ -12,7 +15,7 @@ const isSidebarExpanded = (state = false, action) => {
     default:
       return state;
   }
-}
+};
 
 const player = (state = {}, action) => {
   switch (action.type) {
@@ -26,10 +29,20 @@ const player = (state = {}, action) => {
         ...state,
         time: action.time
       }
+    case SET_TOTALTIME:
+      return {
+        ...state,
+        total: action.time
+      }
+    case SET_SONGINFO:
+      return {
+        ...state,
+        ...action.info
+      }
     default:
       return state;
   }
-}
+};
 
 const rootReducer = combineReducers({
   isSidebarExpanded,

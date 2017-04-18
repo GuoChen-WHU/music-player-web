@@ -1,0 +1,8 @@
+.search-control {
+  margin-bottom: 10px;
+}
+
+.results {
+  height: 650px;
+  overflow-y: scroll;
+}
