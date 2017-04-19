@@ -1,21 +1,15 @@
 import { combineReducers } from 'redux';
 import { 
-  TOGGLE_SIDEBAR, 
   TOGGLE_PAUSED,
   SET_TIME,
   SET_TOTALTIME,
   SET_SONGINFO,
-  SET_RESULTLIST
+  SET_RESULTLIST,
+  ADD_TO_LIST,
+  REMOVE_FROM_LIST,
+  CLEAN_LIST,
+  SET_MODE
 } from '../actions';
-
-const isSidebarExpanded = (state = false, action) => {
-  switch (action.type) {
-    case TOGGLE_SIDEBAR:
-      return !!action.expand;
-    default:
-      return state;
-  }
-};
 
 const player = (state = {}, action) => {
   switch (action.type) {
@@ -44,9 +38,38 @@ const player = (state = {}, action) => {
   }
 };
 
+const list = (state = {}, action) => {
+  switch (action.type) {
+    case ADD_TO_LIST:
+      if (!state.songs.filter(song => song.id === action.song.id).length)
+        return {
+          ...state,
+          songs: [...state.songs, action.song]
+        };
+      return state;
+    case SET_MODE:
+      return {
+        ...state,
+        mode: action.mode
+      };
+    case REMOVE_FROM_LIST:
+      return {
+        ...state,
+        songs: state.songs.filter(song => song.id !== action.id)
+      };
+    case CLEAN_LIST:
+      return {
+        ...state,
+        songs: []
+      };
+    default: 
+      return state;
+  }
+};
+
 const rootReducer = combineReducers({
-  isSidebarExpanded,
-  player
+  player,
+  list
 });
 
 export default rootReducer;

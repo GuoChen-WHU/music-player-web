@@ -7,6 +7,7 @@ import Mine from './Mine';
 import Repo from './Repo';
 import Explore from './Explore';
 import MiniPlayer from './MiniPlayer';
+import List from './List';
 import Audio from './Audio';
 
 const App = () => (
@@ -24,6 +25,7 @@ const App = () => (
     </ReactCSSTransitionGroup>
 
     <MiniPlayer />
+    <List />
     <Audio />
   </div>
 );

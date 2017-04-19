@@ -1,14 +1,14 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { toggleSidebar } from '../actions';
+import FaBars from 'react-icons/fa/bars';
+import EventEmitter from '../util/EventEmitter';
 
-const Navbar = ({ isExpanded, toggleSidebar }) => (
+const Navbar = () => (
   <nav className="navbar">
     <div className="container-fluid">
       <div id="navbar" className="navbar-collapse collapse">
         <ul className="nav navbar-nav navbar-left">
-          <li><a href="#" onClick={() => toggleSidebar(!isExpanded)}>左栏</a></li>
+          <li><a href="#" onClick={() => EventEmitter.trigger('sidebar.toggle')}><FaBars/></a></li>
         </ul>        
         <ul className="nav navbar-nav">
           <li>
@@ -26,15 +26,4 @@ const Navbar = ({ isExpanded, toggleSidebar }) => (
   </nav>
 );
 
-const mapStateToProps = (state) => ({
-  isExpanded: state.isSidebarExpanded
-});
-
-const mapDispatchToProps = {
-  toggleSidebar
-};
-
-export default connect(
-  mapStateToProps, 
-  mapDispatchToProps
-)(Navbar);
+export default Navbar;

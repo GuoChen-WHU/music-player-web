@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Thumbnail from './Thumbnail';
-import { setSongInfo } from '../actions';
+import { setSongInfo, addToList } from '../actions';
 import EventEmitter from '../util/EventEmitter';
 
 class Song extends Component {
@@ -15,13 +15,16 @@ class Song extends Component {
   }
 
   handleClick = e => {
-    this.props.setSongInfo({
+    let song = {
       id: this.props.id,
-      song: this.props.name,
+      name: this.props.name,
       singer: this.props.singer,
       image: this.props.image
-    });
+    };
+    this.props.setSongInfo(song);
     EventEmitter.trigger('audio.play');
+    // Add the song to list
+    this.props.addToList(song);
   }
 
   render() {
@@ -31,7 +34,7 @@ class Song extends Component {
         onClick={this.handleClick}>
         <Thumbnail
           image={this.props.image}
-          song={this.props.name}
+          name={this.props.name}
           singer={this.props.singer}
           size="small"/>
       </li>
@@ -40,7 +43,8 @@ class Song extends Component {
 }
 
 const mapDispatchToProps = {
-  setSongInfo
+  setSongInfo,
+  addToList
 };
 
 export default connect(

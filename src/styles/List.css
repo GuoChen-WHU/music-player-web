@@ -1,0 +1,14 @@
+.List {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  z-index: 500;
+  height: 500px;
+  background-color: #fff;
+  transform: translate(0, 0);
+  transition: transform .5s ease-in-out;
+}
+
+.expanded .List {
+  transform: translate(0, -100%);
+}

@@ -2,21 +2,22 @@ import React from 'react';
 import { connect } from 'react-redux';
 import FaPlay from 'react-icons/fa/play';
 import FaPause from 'react-icons/fa/pause';
+import FaListUl from 'react-icons/fa/list-ul';
 import Progressbar from './Progressbar';
 import EventEmitter from '../util/EventEmitter';
 import '../styles/MiniPlayer';
 
-const MiniPlayer = ({ song, singer, image, paused }) => (
+const MiniPlayer = ({ name, singer, image, paused }) => (
   <div className="MiniPlayer container-fluid">
     <div className="row">
       <div className="col-xs-2">
         <img src={image} alt="avatar" className="avatar"/>
       </div>
-      <div className="col-xs-8">
-        <h4 className="song-info">{`${singer}-${song}`}</h4>
+      <div className="col-xs-7">
+        <h4 className="song-info">{`${singer}-${name}`}</h4>
         <Progressbar />
       </div>
-      <div className="col-xs-2">
+      <div className="col-xs-3">
         <button
           className="btn btn-default btn-play" 
           type="button" 
@@ -25,13 +26,19 @@ const MiniPlayer = ({ song, singer, image, paused }) => (
           }}>
           {paused ? <FaPlay /> : <FaPause />}
         </button>
+        <button
+          className="btn btn-default btn-play" 
+          type="button"
+          onClick={() => EventEmitter.trigger('list.toggle')}> 
+          <FaListUl />
+        </button>
       </div>
     </div>
   </div>
 );
 
 const mapStateToProps = (state) => ({
-  song: state.player.song,
+  name: state.player.name,
   singer: state.player.singer,
   image: state.player.image,
   time: state.player.time,

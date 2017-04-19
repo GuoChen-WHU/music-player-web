@@ -1,0 +1,17 @@
+.list-header {
+  padding: 15px;
+}
+
+.list-header::after {
+  display: table;
+  content: '';
+  clear: both;
+}
+
+.list-header-left {
+  float: left;
+}
+
+.list-header-right {
+  float: right;
+}
