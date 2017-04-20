@@ -44,3 +44,9 @@ export const setMode = mode => ({
   type: SET_MODE,
   mode
 });
+
+export const ADD_TO_HISTORY = 'ADD_TO_HISTORY';
+export const addToHistory = song => ({
+  type: ADD_TO_HISTORY,
+  song
+});

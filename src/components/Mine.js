@@ -1,4 +1,5 @@
 import React from 'react';
+import FaMusic from 'react-icons/fa/music';
 
 const Mine = () => (
   <div className="container-fluid">
@@ -12,7 +13,7 @@ const Mine = () => (
     <div className="panel">
       <div className="panel-heading">
         <h4>
-          <span>图标</span>
+          <FaMusic />
           <a data-toggle="collapse" href="#song-list">创建的歌单</a>
         </h4>
       </div>

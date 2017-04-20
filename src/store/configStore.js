@@ -16,7 +16,8 @@ const initState = {
       {id: '7264117', name: '信仰', singer: '张信哲', image: 'http://imgcache.qq.com/music/photo/album_300/1/300_albumpic_1201_0.jpg'}
     ],
     mode: 'order'
-  }
+  },
+  history: []
 };
 
 const store = createStore(rootReducer, initState);

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FaHeartO from 'react-icons/fa/heart-o';
 import FaBan from 'react-icons/fa/ban';
-import { setSongInfo, removeFromList } from '../actions';
+import { setSongInfo, removeFromList, addToHistory } from '../actions';
 import EventEmitter from '../util/EventEmitter';
 import '../styles/ListItem';
 
@@ -22,13 +22,16 @@ class ListItem extends Component {
 
   handleClick = e => {
     // switch to the song clicked
-    this.props.setSongInfo({
+    let song = {
       id: this.props.id,
       name: this.props.name,
       singer: this.props.singer,
       image: this.props.image
-    });
+    };
+    this.props.setSongInfo(song);
     EventEmitter.trigger('audio.play');
+    // add to history
+    this.props.addToHistory(song);
     // hide list
     this.props.toggleList();
   }
@@ -53,7 +56,8 @@ class ListItem extends Component {
 
 const mapDispatchToProps = {
   setSongInfo,
-  removeFromList
+  removeFromList,
+  addToHistory
 };
 
 export default connect(

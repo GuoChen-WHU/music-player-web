@@ -4,6 +4,7 @@
   width: 100%;
   z-index: 500;
   height: 500px;
+  overflow-y: scroll;
   background-color: #fff;
   transform: translate(0, 0);
   transition: transform .5s ease-in-out;

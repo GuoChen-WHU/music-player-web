@@ -9,6 +9,7 @@ import Explore from './Explore';
 import MiniPlayer from './MiniPlayer';
 import List from './List';
 import Audio from './Audio';
+import OperationPanel from './OperationPanel';
 
 const App = () => (
   <div>
@@ -26,6 +27,7 @@ const App = () => (
 
     <MiniPlayer />
     <List />
+    <OperationPanel />
     <Audio />
   </div>
 );

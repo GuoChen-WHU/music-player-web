@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import FaEllipsisH from 'react-icons/fa/ellipsis-h';
 import Thumbnail from './Thumbnail';
-import { setSongInfo, addToList } from '../actions';
+import { setSongInfo, addToList, addToHistory } from '../actions';
 import EventEmitter from '../util/EventEmitter';
+import '../styles/Song';
 
 class Song extends Component {
 
@@ -23,8 +25,20 @@ class Song extends Component {
     };
     this.props.setSongInfo(song);
     EventEmitter.trigger('audio.play');
+    this.props.addToHistory(song);
     // Add the song to list
     this.props.addToList(song);
+  }
+
+  handleTogglePanel = e => {
+    let song = {
+      id: this.props.id,
+      name: this.props.name,
+      singer: this.props.singer,
+      image: this.props.image
+    };
+    EventEmitter.trigger('panel.show', song);
+    e.stopPropagation();
   }
 
   render() {
@@ -37,6 +51,9 @@ class Song extends Component {
           name={this.props.name}
           singer={this.props.singer}
           size="small"/>
+        <button className="btn btn-default btn-right" onClick={this.handleTogglePanel}>
+          <FaEllipsisH />
+        </button>
       </li>
     );
   }
@@ -44,7 +61,8 @@ class Song extends Component {
 
 const mapDispatchToProps = {
   setSongInfo,
-  addToList
+  addToList,
+  addToHistory
 };
 
 export default connect(

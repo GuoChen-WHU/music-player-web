@@ -2,7 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import EventEmitter from '../util/EventEmitter';
-import { setTime, setTotalTime, togglePaused } from '../actions';
+import { 
+  setTime, 
+  setTotalTime, 
+  togglePaused, 
+  setSongInfo,
+  addToHistory 
+} from '../actions';
 import { getAudioUrl } from '../services/api';
 
 class Audio extends Component {
@@ -15,28 +21,75 @@ class Audio extends Component {
   }
 
   componentDidMount() {
-    EventEmitter.on('audio.play', () => {
-      this.audioEle.play();
-      this.timer = setInterval(() => this.props.setTime(this.audioEle.currentTime), 500);
-      this.props.togglePaused(false);
-    });
-    EventEmitter.on('audio.pause', () => {
-      this.audioEle.pause();
-      clearInterval(this.timer);
-      this.props.togglePaused(true);
-    });
-    EventEmitter.on('audio.setTime', time => {
-      this.audioEle.currentTime = time;
-      this.props.setTime(time);
-    });
-    this.audioEle.addEventListener('play', e => this.props.setTotalTime(this.audioEle.duration), false);
-    this.audioEle.addEventListener('ended', e => this.props.togglePaused(true), false);
+    EventEmitter.on('audio.play', this.handlePlay );
+    EventEmitter.on('audio.pause', this.handlePause);
+    EventEmitter.on('audio.setTime', this.handleSetTime);
+    this.audioEle.addEventListener('ended', this.handleEnded, false);
   }
 
   componentWillUnmount() {
     EventEmitter.off('audio.play');
     EventEmitter.off('audio.pause');
+    EventEmitter.off('audio.setTime');
     clearInterval(this.timer);
+    this.audioEle.removeEventListener('ended', this.handleEnded);
+  }
+
+  handlePlay = () => {
+    this.play();
+    this.timer = setInterval(() => this.props.setTime(this.audioEle.currentTime), 500);
+    this.props.togglePaused(false);
+  }
+
+  handlePause = () => {
+    this.audioEle.pause();
+    clearInterval(this.timer);
+    this.props.togglePaused(true);
+  }
+
+  handleSetTime = time => {
+    this.audioEle.currentTime = time;
+    this.props.setTime(time);
+  }
+
+  play = () => {
+    this.audioEle.play();
+    // wait until duration is calculated properly
+    this.waitDuration();
+  }
+
+  waitDuration = () => {
+    if (isNaN(this.audioEle.duration)) {
+      setTimeout(this.waitDuration, 100);
+      return;
+    }
+    this.props.setTotalTime(this.audioEle.duration);
+  }
+
+  // choose a song to play according to play mode
+  handleEnded = e => {
+    let index = this.props.songs.findIndex(song => song.id === this.props.id);
+    switch (this.props.mode) {
+      default:
+      case 'order':
+        if (index < this.props.songs.length - 1) {
+          this.props.setSongInfo(this.props.songs[++index]);
+          this.props.addToHistory(this.props.songs[index]);
+          this.play();
+          break;
+        }
+        this.props.togglePaused(true);
+        break;
+      case 'repeat':
+        this.play();
+        break;
+      case 'random':
+        let random = Math.floor((this.props.songs.length - 1) * Math.random());
+        this.props.setSongInfo(this.props.songs[random]);
+        this.props.addToHistory(this.props.songs[random]);
+        this.play();
+        break;
+    }
   }
 
   render() {
@@ -52,13 +105,17 @@ class Audio extends Component {
 
 const mapStateToProps = (state) => ({
   id: state.player.id,
-  paused: state.player.paused
+  paused: state.player.paused,
+  mode: state.list.mode,
+  songs: state.list.songs
 });
 
 const mapDispatchToProps = {
   setTime,
   setTotalTime,
-  togglePaused
+  togglePaused,
+  setSongInfo,
+  addToHistory
 };
 
 export default connect(

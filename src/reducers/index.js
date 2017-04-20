@@ -8,7 +8,8 @@ import {
   ADD_TO_LIST,
   REMOVE_FROM_LIST,
   CLEAN_LIST,
-  SET_MODE
+  SET_MODE,
+  ADD_TO_HISTORY
 } from '../actions';
 
 const player = (state = {}, action) => {
@@ -67,9 +68,19 @@ const list = (state = {}, action) => {
   }
 };
 
+const history = (state = [], action) => {
+  switch (action.type) {
+    case ADD_TO_HISTORY:
+      return [...state, action.song];
+    default:
+      return state;
+  }
+};
+
 const rootReducer = combineReducers({
   player,
-  list
+  list,
+  history
 });
 
 export default rootReducer;
