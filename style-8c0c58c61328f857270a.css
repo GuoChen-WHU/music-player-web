@@ -1,0 +1,177 @@
+.Sidebar {
+  position: absolute;
+  z-index: 500;
+  height: 100%;
+  background-color: #fff;
+  transform: translate(-100%);
+  transition: transform .5s ease-in-out;
+}
+
+.expanded .Sidebar {
+  transform: translate(0);
+}
+
+.backdrop {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 300;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.expanded .backdrop {
+  display: block;
+}.list-item {
+  cursor: pointer;
+}
+
+.list-item:hover {
+  background-color: #eee;
+}
+
+.list-item::after {
+  display: table;
+  content: '';
+  clear: both;
+}
+
+.list-item span {
+  line-height: 34px;
+}
+
+.buttons {
+  float: right;
+}.avatar-large {
+  width: 64px;
+  height: 64px;
+}
+
+.avatar-small {
+  width: 48px;
+  height: 48px;
+}.btn-right {
+  position: absolute;
+  top: 40px;
+  right: 10px;
+  transform: translate(0, -50%);
+}.search-control {
+  margin-bottom: 10px;
+}
+
+.results {
+  height: 650px;
+  overflow-y: scroll;
+}.MiniPlayer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.avatar {
+  width: 64px;
+  height: 64px;
+}
+
+.song-info {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.progress-slim {
+  height: 5px;
+  cursor: pointer;
+}
+
+.total {
+  position: absolute;
+  right: 15px;
+}
+
+.progress {
+  margin-bottom: 0;
+}
+
+.btn-play {
+  margin-top: 15px;
+  border: none;
+}.list-header {
+  padding: 15px;
+}
+
+.list-header::after {
+  display: table;
+  content: '';
+  clear: both;
+}
+
+.list-header-left {
+  float: left;
+}
+
+.list-header-right {
+  float: right;
+}.List {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  z-index: 500;
+  height: 500px;
+  overflow-y: scroll;
+  background-color: #fff;
+  transform: translate(0, 0);
+  transition: transform .5s ease-in-out;
+}
+
+.expanded .List {
+  transform: translate(0, -100%);
+}
+.OperationPanel {
+  position: absolute;
+  top: 100%;
+  z-index: 500;
+  width: 100%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background-color: #fff;
+  transform: translate(0, 0);
+  transition: transform .5s ease-in-out;
+}
+
+.expanded .OperationPanel {
+  transform: translate(0, -100%);
+}
+
+.btn-wrapper {
+  text-align: center;
+}
+
+.btn-wrapper .btn {
+  font-size: 1.5em;
+}html, body {
+  height: 100%;
+}
+
+#app {
+  position: relative;
+  height: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 460px;
+  overflow: hidden;
+  box-shadow: 0 0 5px 5px #aaa;
+}
+
+.fade-enter {
+  opacity: 0;
+  z-index: 1;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 250ms ease-in;
+}
+/*# sourceMappingURL=style-8c0c58c61328f857270a.css.map*/
