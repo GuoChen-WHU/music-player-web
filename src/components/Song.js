@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FaEllipsisH from 'react-icons/fa/ellipsis-h';
 import Thumbnail from './Thumbnail';
-import { setSongInfo, addToList, addToHistory } from '../actions';
+import { setSongInfo } from '../actions/player';
+import { addToList } from '../actions/list';
+import { addToHistory } from '../actions/history';
 import EventEmitter from '../util/EventEmitter';
 import '../styles/Song';
 
@@ -13,7 +15,10 @@ class Song extends Component {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     singer: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired
+    image: PropTypes.string.isRequired,
+    setSongInfo: PropTypes.func,
+    addToList: PropTypes.func,
+    addToHistory: PropTypes.func
   }
 
   handleClick = e => {
@@ -25,6 +30,7 @@ class Song extends Component {
     };
     this.props.setSongInfo(song);
     EventEmitter.trigger('audio.play');
+    // Add to history
     this.props.addToHistory(song);
     // Add the song to list
     this.props.addToList(song);

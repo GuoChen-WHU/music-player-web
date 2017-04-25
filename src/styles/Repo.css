@@ -3,6 +3,10 @@
 }
 
 .results {
-  height: 650px;
+  height: 550px;
   overflow-y: scroll;
+}
+
+.results::-webkit-scrollbar {
+  display: none;
 }

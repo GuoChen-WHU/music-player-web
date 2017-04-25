@@ -8,7 +8,8 @@ import FaRandom from 'react-icons/fa/random';
 import FaPlus from 'react-icons/fa/plus';
 import FaTrash from 'react-icons/fa/trash';
 
-import { setMode, cleanList } from '../actions';
+import { setMode } from '../actions/player';
+import { cleanList } from '../actions/list';
 
 import '../styles/ListHeader';
 
@@ -74,7 +75,7 @@ class ListHeader extends Component {
 }
 
 const mapStateToProps = state => ({
-  mode: state.list.mode
+  mode: state.player.mode
 });
 
 const mapDispatchToProps = {

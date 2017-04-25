@@ -41,8 +41,6 @@ const mapStateToProps = (state) => ({
   name: state.player.name,
   singer: state.player.singer,
   image: state.player.image,
-  time: state.player.time,
-  total: state.player.total,
   paused: state.player.paused
 });
 

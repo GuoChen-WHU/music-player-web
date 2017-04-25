@@ -6,25 +6,31 @@ import {
   setTime, 
   setTotalTime, 
   togglePaused, 
-  setSongInfo,
-  addToHistory 
-} from '../actions';
+  setSongInfo 
+} from '../actions/player';
+import { addToHistory } from '../actions/history';
 import { getAudioUrl } from '../services/api';
 
 class Audio extends Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
+    name: PropTypes.string,
+    singer: PropTypes.string,
+    image: PropTypes.string,
     paused: PropTypes.bool.isRequired,
     setTime: PropTypes.func,
     setTotalTime: PropTypes.func,
-    togglePaused: PropTypes.func
+    togglePaused: PropTypes.func,
+    setSongInfo: PropTypes.func,
+    addToHistory: PropTypes.func
   }
 
   componentDidMount() {
-    EventEmitter.on('audio.play', this.handlePlay );
+    EventEmitter.on('audio.play', this.handlePlay);
     EventEmitter.on('audio.pause', this.handlePause);
     EventEmitter.on('audio.setTime', this.handleSetTime);
     this.audioEle.addEventListener('ended', this.handleEnded, false);
+    this.audioEle.addEventListener('durationchange', this.handleDurationChange, false);
   }
 
   componentWillUnmount() {
@@ -33,6 +39,7 @@ class Audio extends Component {
     EventEmitter.off('audio.setTime');
     clearInterval(this.timer);
     this.audioEle.removeEventListener('ended', this.handleEnded);
+    this.audioEle.removeEventListener('durationchange', this.handleDurationChange);
   }
 
   handlePlay = () => {
@@ -54,27 +61,23 @@ class Audio extends Component {
 
   play = () => {
     this.audioEle.play();
-    // wait until duration is calculated properly
-    this.waitDuration();
-  }
-
-  waitDuration = () => {
-    if (isNaN(this.audioEle.duration)) {
-      setTimeout(this.waitDuration, 100);
-      return;
-    }
-    this.props.setTotalTime(this.audioEle.duration);
+    // add to history
+    this.props.addToHistory({
+      id: this.props.id,
+      name: this.props.name,
+      singer: this.props.singer,
+      image: this.props.image
+    });
   }
 
   // choose a song to play according to play mode
   handleEnded = e => {
-    let index = this.props.songs.findIndex(song => song.id === this.props.id);
+    let index = this.props.list.findIndex(song => song.id === this.props.id);
     switch (this.props.mode) {
       default:
       case 'order':
-        if (index < this.props.songs.length - 1) {
-          this.props.setSongInfo(this.props.songs[++index]);
-          this.props.addToHistory(this.props.songs[index]);
+        if (index < this.props.list.length - 1) {
+          this.props.setSongInfo(this.props.list[++index]);
           this.play();
           break;
         }
@@ -84,12 +87,15 @@ class Audio extends Component {
         this.play();
         break;
       case 'random':
-        let random = Math.floor((this.props.songs.length - 1) * Math.random());
-        this.props.setSongInfo(this.props.songs[random]);
-        this.props.addToHistory(this.props.songs[random]);
+        let random = Math.floor((this.props.list.length - 1) * Math.random());
+        this.props.setSongInfo(this.props.list[random]);
         this.play();
         break;
     }
+  }
+
+  handleDurationChange = e => {
+    this.props.setTotalTime(this.audioEle.duration);
   }
 
   render() {
@@ -105,9 +111,12 @@ class Audio extends Component {
 
 const mapStateToProps = (state) => ({
   id: state.player.id,
+  name: state.player.name,
+  singer: state.player.singer,
+  image: state.player.image,
   paused: state.player.paused,
-  mode: state.list.mode,
-  songs: state.list.songs
+  mode: state.player.mode,
+  list: state.list
 });
 
 const mapDispatchToProps = {

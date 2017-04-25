@@ -25,7 +25,7 @@ class Sidebar extends Component {
           <div className="jumbotron">
             <p>登录云音乐</p>
             <p>手机电脑多端同步</p>
-            <button>登录</button>
+            <button className="btn btn-default">登录</button>
           </div>
           <div className="list-group">
             <button type="button" className="list-group-item">我的消息</button>

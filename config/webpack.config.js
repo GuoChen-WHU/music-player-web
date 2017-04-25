@@ -1,4 +1,5 @@
 var path = require('path');
+var url = require('url');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HTMLWebpackPlugin = require('html-webpack-plugin');
@@ -9,12 +10,15 @@ var PRODUCTION = process.env.NODE_ENV === 'production';
 var rootPath = path.resolve(__dirname, '..');
 var srcPath = path.join(rootPath, 'src');
 var distPath = path.join(rootPath, 'dist');
+var staticPath = path.join(rootPath, 'static');
 
 var entry = PRODUCTION
     ? {
         app: path.join(srcPath, 'app.js'),
         vendor: [
+          'prop-types',
           'react',
+          'react-addons-css-transition-group',
           'react-dom',
           'redux',
           'redux-thunk',
@@ -33,12 +37,16 @@ var plugins = PRODUCTION
     ? [
         new webpack.optimize.CommonsChunkPlugin({
           name: 'vendor',
-          filename: 'vendor[hash].js'
+          filename: 'vendor.[hash].js'
         }),
-        new webpack.optimize.UglifyJsPlugin(),
+        new webpack.optimize.UglifyJsPlugin({
+          compress: {
+            warnings: false
+          }
+        }),
         new ExtractTextPlugin('style-[hash].css'),
         new HTMLWebpackPlugin({
-          template: path.join(rootPath, 'index.html')
+          template: path.join(srcPath, 'index.html')
         })
       ]
     : [
@@ -48,7 +56,10 @@ var plugins = PRODUCTION
 plugins.push(
   new webpack.DefinePlugin({
     DEVELOPMENT: JSON.stringify(DEVELOPMENT),
-    PRODUCTION: JSON.stringify(PRODUCTION)
+    PRODUCTION: JSON.stringify(PRODUCTION),
+    'process.env': {
+      NODE_ENV: JSON.stringify('production')
+    }
   })
 );
 
@@ -60,13 +71,17 @@ const cssLoader = PRODUCTION
     })
     : ['style-loader', 'css-loader?localIdentName=' + cssIdentifier]
 
+let homepagePath = require('../package.json').homepage;
+let homepagePathname = homepagePath ? url.parse(homepagePath).pathname : '/';
+homepagePathname = homepagePathname.endsWith('/') ? homepagePathname : homepagePathname + '/';
+
 module.exports = {
-  devtool: 'source-map',
+  devtool: PRODUCTION ? 'cheap-module-source-map' : 'source-map',
   entry: entry,
   plugins: plugins,
   output: {
     path: distPath,
-    publicPath: PRODUCTION ? '/' : '/dist/',
+    publicPath: PRODUCTION ? homepagePathname : '/dist/',
     filename: PRODUCTION ? 'bundle.[hash:12].min.js' : 'bundle.js'
   },
   resolve: {

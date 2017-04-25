@@ -25,8 +25,8 @@ class List extends Component {
     return (
       <div ref={wrapper => this.wrapper = wrapper}>
         <div className="list-group List">
-          <ListHeader num={this.props.songs.length} />
-          {this.props.songs.map(song => 
+          <ListHeader num={this.props.list.length} />
+          {this.props.list.map(song => 
             <ListItem 
               key={song.id} 
               id={song.id} 
@@ -43,7 +43,7 @@ class List extends Component {
 }
 
 const mapStateToProps = state => ({
-  songs: state.list.songs
+  list: state.list
 });
 
 export default connect(

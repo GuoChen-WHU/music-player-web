@@ -1,28 +1,27 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import FaPlus from 'react-icons/fa/plus';
 import FaHeartO from 'react-icons/fa/heart-o';
 import FaBan from 'react-icons/fa/ban';
-import { setSongInfo } from '../actions/player';
-import { removeFromList } from '../actions/list';
-import { addToHistory } from '../actions/history';
-import { addToCollection } from '../actions/collection';
-import EventEmitter from '../util/EventEmitter';
-import '../styles/ListItem';
 
-class ListItem extends Component {
+import { setSongInfo } from '../actions/player';
+import { addToList } from '../actions/list';
+import { removeFromCollection } from '../actions/collection';
+
+import EventEmitter from '../util/EventEmitter';
+
+class CollectionItem extends Component {
+
   static propTypes = {
-    // from parent component - List
     id: PropTypes.string,
     name: PropTypes.string,
     singer: PropTypes.string,
     image: PropTypes.string,
-    toggleList: PropTypes.func,
-    // from store
     setSongInfo: PropTypes.func,
-    removeFromList: PropTypes.func,
-    addToHistory: PropTypes.func,
-    addToCollection: PropTypes.func
+    addToList: PropTypes.func,
+    removeFromCollection: PropTypes.func
   }
 
   handleClick = e => {
@@ -35,25 +34,23 @@ class ListItem extends Component {
     };
     this.props.setSongInfo(song);
     EventEmitter.trigger('audio.play');
-    // add to history
-    this.props.addToHistory(song);
-    // hide list
-    this.props.toggleList();
+    // add to list
+    this.props.addToList(song);
   }
 
-  handleCollect = e => {
+  handleAddToList = e => {
     let song = {
       id: this.props.id,
       name: this.props.name,
       singer: this.props.singer,
       image: this.props.image
     };
-    this.props.addToCollection(song);
+    this.props.addToList(song);
     e.stopPropagation();
   }
 
   handleRemove = e => {
-    this.props.removeFromList(this.props.id);
+    this.props.removeFromCollection(this.props.id);
     e.stopPropagation();
   }
 
@@ -62,7 +59,9 @@ class ListItem extends Component {
       <li className="list-group-item list-item" onClick={this.handleClick}>
         <span>{`${this.props.name} - ${this.props.singer}`}</span>
         <div className="buttons">
-          <button className="btn btn-default" onClick={this.handleCollect}><FaHeartO /></button>
+          <button className="btn btn-default" onClick={this.handleAddToList}>
+            <FaPlus />
+          </button>
           <button className="btn btn-default" onClick={this.handleRemove}><FaBan /></button>
         </div>
       </li>
@@ -72,12 +71,11 @@ class ListItem extends Component {
 
 const mapDispatchToProps = {
   setSongInfo,
-  removeFromList,
-  addToHistory,
-  addToCollection
+  addToList,
+  removeFromCollection
 };
 
 export default connect(
   null,
   mapDispatchToProps
-)(ListItem);
+)(CollectionItem);

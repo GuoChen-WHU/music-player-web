@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import FaPlus from 'react-icons/fa/plus';
@@ -6,11 +7,18 @@ import FaHeartO from 'react-icons/fa/heart-o';
 import FaFileAudioO from 'react-icons/fa/file-audio-o';
 import FaCommentingO from 'react-icons/fa/commenting-o';
 
-import { addToList } from '../actions';
+import { addToList } from '../actions/list';
+import { addToCollection } from '../actions/collection';
+
 import EventEmitter from '../util/EventEmitter';
 import '../styles/OperationPanel';
 
 class OperationPanel extends Component {
+
+  static propTypes = {
+    addToList: PropTypes.func.isRequired,
+    addToCollection: PropTypes.func.isRequired
+  }
 
   componentDidMount() {
     EventEmitter.on('panel.show', song => {
@@ -32,6 +40,11 @@ class OperationPanel extends Component {
     this.handleToggle();
   }
 
+  handleAddToCollection = e => {
+    this.props.addToCollection(this.song);
+    this.handleToggle();
+  }
+
   render() {
     return (
       <div ref={wrapper => this.wrapper = wrapper}>
@@ -44,7 +57,7 @@ class OperationPanel extends Component {
               <h5>添加到列表</h5>
             </div>
             <div className="col-xs-3 btn-wrapper">
-              <button className="btn btn-default">
+              <button className="btn btn-default" onClick={this.handleAddToCollection}>
                 <FaHeartO />
               </button>
               <h5>收藏</h5>
@@ -70,7 +83,8 @@ class OperationPanel extends Component {
 }
 
 const mapDispatchToProps = {
-  addToList
+  addToList,
+  addToCollection
 };
 
 export default connect(

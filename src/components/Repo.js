@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Song from './Song';
+import Trends from './Trends';
 import { search, getImageUrl } from '../services/api';
 import '../styles/Repo';
 
@@ -8,12 +9,7 @@ class Repo extends Component {
     super();
     this.state = {
       input: '',
-      list: [{
-        "docid": "8758666917101856462",
-        "f": "101369814|算什么男人|4558|周杰伦|852856|哎呦，不错哦|2496580|289|6|1|0|11580808|4632445|320000|0|31933476|32002118|6708265|6989683|0|001Js78a40BZU6|0025NhlN2yWrP4|001uqejs3d6EID|31|0",
-        "fsinger": "周杰伦",
-        "fsong": "算什么男人"      
-      }]
+      list: []
     };
   }
 
@@ -23,6 +19,10 @@ class Repo extends Component {
 
   handleSearch = e => {
     search(this.state.input).then(list => this.setState({list: list}));
+  }
+
+  setResultList = list => {
+    this.setState({list: list});
   }
 
   render() {
@@ -39,6 +39,8 @@ class Repo extends Component {
             <button className="btn btn-default" type="button" onClick={this.handleSearch}>搜索</button>
           </span>
         </div>
+
+        <Trends setResultList={this.setResultList}/>
 
         <ul className="list-group results">
           {this.state.list.map(info => 

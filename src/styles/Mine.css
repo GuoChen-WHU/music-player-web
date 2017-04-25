@@ -1,0 +1,8 @@
+.Mine {
+  height: 650px;
+  overflow-y: scroll;
+}
+
+.Mine::-webkit-scrollbar {
+  display: none;
+}

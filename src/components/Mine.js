@@ -1,14 +1,18 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import FaMusic from 'react-icons/fa/music';
+import History from './History';
+import Collection from './Collection';
+import '../styles/Mine';
 
 const Mine = () => (
-  <div className="container-fluid">
+  <div className="container-fluid Mine">
     <div className="list-group">
       <button type="button" className="list-group-item">本地音乐</button>
-      <button type="button" className="list-group-item">最近播放</button>
+      <History />
+      <Collection />
       <button type="button" className="list-group-item">下载管理</button>
       <button type="button" className="list-group-item">我的电台</button>
-      <button type="button" className="list-group-item">我的收藏</button>
     </div>
     <div className="panel">
       <div className="panel-heading">
@@ -25,5 +29,9 @@ const Mine = () => (
     </div>
   </div>
 );
+
+const mapStateToProps = state => ({
+  history: state.history
+});
 
 export default Mine;

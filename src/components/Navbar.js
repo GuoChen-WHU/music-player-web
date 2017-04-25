@@ -6,7 +6,6 @@ import EventEmitter from '../util/EventEmitter';
 const Navbar = () => (
   <nav className="navbar">
     <div className="container-fluid">
-      <div id="navbar" className="navbar-collapse collapse">
         <ul className="nav navbar-nav navbar-left">
           <li><a href="#" onClick={() => EventEmitter.trigger('sidebar.toggle')}><FaBars/></a></li>
         </ul>        
@@ -15,14 +14,13 @@ const Navbar = () => (
             <Link to="/Mine">我的</Link>
           </li>
           <li>
-            <Link to="/">音乐馆</Link>
+            <Link to="/">搜索</Link>
           </li>
           <li>
             <Link to="/Explore">发现</Link>
           </li>
         </ul>
       </div>
-    </div>
   </nav>
 );
 

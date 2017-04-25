@@ -1,0 +1,19 @@
+.Trends {
+  margin-bottom: 10px;
+}
+
+.trend-label {
+  display: inline-block;
+  margin-right: .4em;
+  margin-bottom: .2em;
+  padding: .2em .6em .3em;
+  color: #fff;
+  background-color: #337ab7;
+  border-radius: .25em;
+  cursor: pointer;
+}
+
+.trend-label:hover,
+.trend-label:focus {
+  background-color: #286090;
+}

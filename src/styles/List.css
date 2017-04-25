@@ -10,6 +10,10 @@
   transition: transform .5s ease-in-out;
 }
 
+.List::-webkit-scrollbar {
+  display: none;
+}
+
 .expanded .List {
   transform: translate(0, -100%);
 }
