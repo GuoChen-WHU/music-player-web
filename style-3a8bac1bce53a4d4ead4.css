@@ -24,8 +24,17 @@
 
 .expanded .backdrop {
   display: block;
-}.Mine {
-  height: 650px;
+}/* 避免导航栏在小屏幕下的折叠*/
+.navbar-nav {
+  float: left;
+  margin: 0;
+}
+
+.navbar-nav > li {
+  float: left;
+}
+.Mine {
+  height: calc(100% - 20px);
   overflow-y: scroll;
 }
 
@@ -62,13 +71,18 @@
 .trend-label:hover,
 .trend-label:focus {
   background-color: #286090;
-}.search-control {
+}.Repo {
+  height: 100%;
+}
+
+.search-control {
   margin-bottom: 10px;
 }
 
 .results {
-  height: 550px;
+  height: calc(100% - 134px);
   overflow-y: scroll;
+  background-color: #fff;
 }
 
 .results::-webkit-scrollbar {
@@ -78,11 +92,15 @@
   left: 0;
   right: 0;
   bottom: 0;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background-color: #fff;
 }
 
 .avatar {
   width: 64px;
   height: 64px;
+  border-radius: 64px;
 }
 
 .song-info {
@@ -106,6 +124,21 @@
 
 .btn-play {
   margin-top: 15px;
+}
+
+@media screen and (max-width: 768px) {
+  .btn-play {
+    padding: 4px 8px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .col-xs-2, 
+  .col-xs-3, 
+  .col-xs-7 {
+    padding-right: 6px;
+    padding-left: 6px;
+  }
 }.list-header {
   padding: 15px;
 }
@@ -194,7 +227,21 @@
   margin-left: auto;
   max-width: 460px;
   overflow: hidden;
+  background-color: #f2f2f2;
   box-shadow: 0 0 5px 5px #aaa;
+}
+
+main {
+  position: absolute;
+  top: 72px;
+  bottom: 78px;
+  width: 100%;
+}
+
+@media (max-width: 480px) {
+  main {
+    top: 52px;
+  }
 }
 
 .fade-enter {
@@ -206,4 +253,4 @@
   opacity: 1;
   transition: opacity 250ms ease-in;
 }
-/*# sourceMappingURL=style-1acd14e84fe9ba0584ba.css.map*/
+/*# sourceMappingURL=style-3a8bac1bce53a4d4ead4.css.map*/
