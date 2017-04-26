@@ -27,7 +27,7 @@ class Repo extends Component {
 
   render() {
     return (
-      <div className="container-fluid">
+      <div className="container-fluid Repo">
         <div className="input-group search-control">
           <input 
             type="text" 

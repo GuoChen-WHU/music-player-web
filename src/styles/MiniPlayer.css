@@ -3,11 +3,15 @@
   left: 0;
   right: 0;
   bottom: 0;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background-color: #fff;
 }
 
 .avatar {
   width: 64px;
   height: 64px;
+  border-radius: 64px;
 }
 
 .song-info {
@@ -31,4 +35,19 @@
 
 .btn-play {
   margin-top: 15px;
+}
+
+@media screen and (max-width: 768px) {
+  .btn-play {
+    padding: 4px 8px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .col-xs-2, 
+  .col-xs-3, 
+  .col-xs-7 {
+    padding-right: 6px;
+    padding-left: 6px;
+  }
 }

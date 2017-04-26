@@ -1,10 +1,15 @@
+.Repo {
+  height: 100%;
+}
+
 .search-control {
   margin-bottom: 10px;
 }
 
 .results {
-  height: 550px;
+  height: calc(100% - 134px);
   overflow-y: scroll;
+  background-color: #fff;
 }
 
 .results::-webkit-scrollbar {

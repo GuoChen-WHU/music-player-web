@@ -16,14 +16,16 @@ const App = () => (
     <Sidebar />
     <Navbar />
 
-    <ReactCSSTransitionGroup
-      transitionName="fade"
-      transitionEnterTimeout={300}
-      transitionLeaveTimeout={300}>
-      <Route path="/mine" component={Mine}></Route>
-      <Route exact path="/" component={Repo}></Route>
-      <Route path="/explore" component={Explore}></Route>
-    </ReactCSSTransitionGroup>
+    <main>
+      <ReactCSSTransitionGroup
+        transitionName="fade"
+        transitionEnterTimeout={300}
+        transitionLeaveTimeout={300}>
+        <Route path="/mine" component={Mine}></Route>
+        <Route exact path="/" component={Repo}></Route>
+        <Route path="/explore" component={Explore}></Route>
+      </ReactCSSTransitionGroup>
+    </main>
 
     <MiniPlayer />
     <List />
