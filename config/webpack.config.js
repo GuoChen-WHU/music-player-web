@@ -63,13 +63,18 @@ plugins.push(
   })
 );
 
-const cssIdentifier = PRODUCTION ? '[hash:base64:10]' : '[path][name]---[local]';
-
 const cssLoader = PRODUCTION
     ? ExtractTextPlugin.extract({
-      loader: 'css-loader?localIdentName=' + cssIdentifier
+      use: [
+        {
+          loader: 'css-loader',
+          options: {
+            minimize: true
+          }
+        }
+      ]
     })
-    : ['style-loader', 'css-loader?localIdentName=' + cssIdentifier]
+    : ['style-loader', 'css-loader'];
 
 let homepagePath = require('../package.json').homepage;
 let homepagePathname = homepagePath ? url.parse(homepagePath).pathname : '/';
@@ -88,19 +93,17 @@ module.exports = {
     extensions: ['.js', '.jsx', '.css']
   },
   module: {
-    loaders: [{
+    rules: [{
       test: /\.js$/,
-      loaders: ['babel-loader'],
+      use: ['babel-loader'],
       exclude: '/node_modules/'
     }, {
-      // url-loader 对大于10KB的图片使用内联图片
       test: /\.(png|jpg|gif)$/,
-      loaders: ['url-loader?limit=10000&name=images/[hash:12].[ext]'],
+      use: ['url-loader?limit=10000&name=images/[hash:12].[ext]'],
       exclude: '/node_modules/'
     }, {
       test: /\.css$/,
-      // style插入style标签，css理解css
-      loaders: cssLoader,
+      use: cssLoader,
       exclude: '/node_modules/'
     }]
   }

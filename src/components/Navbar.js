@@ -1,28 +1,42 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Link, withRouter } from 'react-router-dom';
 import FaBars from 'react-icons/fa/bars';
+import FaSearch from 'react-icons/fa/search';
 import EventEmitter from '../util/EventEmitter';
 import '../styles/Navbar';
 
-const Navbar = () => (
-  <nav className="navbar">
-    <div className="container-fluid">
-        <ul className="nav navbar-nav navbar-left">
-          <li><a href="#" onClick={() => EventEmitter.trigger('sidebar.toggle')}><FaBars/></a></li>
-        </ul>        
-        <ul className="nav navbar-nav">
-          <li>
-            <Link to="/Mine">我的</Link>
-          </li>
-          <li>
-            <Link to="/">搜索</Link>
-          </li>
-          <li>
-            <Link to="/Explore">发现</Link>
-          </li>
-        </ul>
-      </div>
-  </nav>
-);
+class Navbar extends Component {
 
-export default Navbar;
+  static propTypes = {
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
+  }
+
+  render() {
+    const { location } = this.props;
+
+    return (
+      <nav className="container-fluid">
+        <span className="nav-button"><a href="#" onClick={() => EventEmitter.trigger('sidebar.toggle')}><FaBars/></a></span>
+        <ul className="nav">
+          <li className={location.pathname === '/mine' ? 'nav-item current' : 'nav-item'}>
+            <Link to="/mine">我的</Link>
+          </li>
+          <li className={location.pathname === '/search' ? 'nav-item current' : 'nav-item'}>
+            <Link to="/search">乐库</Link>
+          </li>
+          <li className={location.pathname === '/explore' ? 'nav-item current' : 'nav-item'}>
+            <Link to="/explore">发现</Link>
+          </li>
+          <li className="move"></li>
+        </ul>
+        <span className="nav-button nav-button-right"><Link to="/search"><FaSearch /></Link></span>
+      </nav>
+    );
+  }
+} 
+
+const NavbarWithRouter = withRouter(Navbar);
+export default NavbarWithRouter;

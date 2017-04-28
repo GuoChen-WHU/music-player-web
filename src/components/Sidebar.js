@@ -13,7 +13,16 @@ class Sidebar extends Component {
   }
 
   handleToggle = e => {
-    this.wrapper.classList.toggle('expanded');
+    if (this.wrapper.classList.contains('in')) {
+      // hide the sidebar
+      this.wrapper.classList.remove('expanded');
+      setTimeout(() => this.wrapper.classList.remove('in'), 500);
+    } else {
+      // show
+      this.wrapper.classList.add('in');
+      this.wrapper.offsetWidth; // overflow
+      this.wrapper.classList.toggle('expanded');
+    }
   }
 
   render() {

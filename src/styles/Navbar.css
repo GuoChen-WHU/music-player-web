@@ -1,9 +1,59 @@
-/* 避免导航栏在小屏幕下的折叠*/
-.navbar-nav {
-  float: left;
-  margin: 0;
+nav {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #fff;
 }
 
-.navbar-nav > li {
-  float: left;
+.nav-button {
+  position: absolute;
+  top: 20px;
+}
+
+.nav-button > a {
+  padding: 10px 15px;
+}
+
+.nav-button-right {
+  right: 10px;
+}
+
+.nav {
+  position: relative;
+  display: flex;
+  width: 300px;
+  margin: 0 auto;
+}
+
+.nav-item {
+  flex: 1;
+  text-align: center;
+}
+
+.nav-item.current {
+  font-weight: bold;
+}
+
+.nav > li > a:hover,
+.nav > li > a:focus {
+  color: #337ab7;
+  background-color: inherit; /* 覆盖bootstrap样式 */
+}
+
+.nav > .move {
+  position: absolute;
+  bottom: -10px;
+  width: 33.3%;
+  border-top: 5px solid #337ab7;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.2s ease-in-out;
+}
+
+.nav-item:nth-child(1).current ~ .move {
+  transform: translate3d(0, 0, 0);
+}
+.nav-item:nth-child(2).current ~ .move {
+  transform: translate3d(100%, 0, 0);
+}
+.nav-item:nth-child(3).current ~ .move {
+  transform: translate3d(200%, 0, 0);
 }
