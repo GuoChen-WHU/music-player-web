@@ -1,7 +1,9 @@
 nav {
   padding-top: 10px;
   padding-bottom: 10px;
-  background-color: #fff;
+  font-size: 16px;
+  color: #fff;
+  background-color: #1565c0;
 }
 
 .nav-button {
@@ -20,7 +22,7 @@ nav {
 .nav {
   position: relative;
   display: flex;
-  width: 300px;
+  width: 60%;
   margin: 0 auto;
 }
 
@@ -35,15 +37,15 @@ nav {
 
 .nav > li > a:hover,
 .nav > li > a:focus {
-  color: #337ab7;
+  color: inherit;
   background-color: inherit; /* 覆盖bootstrap样式 */
 }
 
 .nav > .move {
   position: absolute;
-  bottom: -10px;
+  bottom: -8px;
   width: 33.3%;
-  border-top: 5px solid #337ab7;
+  border-top: 2px solid #fff;
   transform: translate3d(0, 0, 0);
   transition: transform 0.2s ease-in-out;
 }

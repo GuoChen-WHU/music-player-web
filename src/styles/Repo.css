@@ -1,4 +1,6 @@
 .Repo {
+  display: flex;
+  flex-direction: column;
   height: 100%;
 }
 
@@ -6,8 +8,23 @@
   margin-bottom: 10px;
 }
 
+.clear-button {
+  position: absolute;
+  top: 6px;
+  right: 60px;
+  z-index: 3;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  color: #fff;
+  border: 1px solid #aaa;
+  border-radius: 50%;
+  background-color: #aaa;
+}
+
 .results {
-  height: calc(100% - 134px);
+  flex: 1;
+  margin: 0 -15px;
   overflow-y: scroll;
   background-color: #fff;
 }

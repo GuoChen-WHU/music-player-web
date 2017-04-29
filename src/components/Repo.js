@@ -34,7 +34,14 @@ class Repo extends Component {
             className="form-control" 
             value={this.state.input}
             onChange={this.handleInputChange} 
-            placeholder="..." />
+            placeholder="搜索歌曲" />
+          <button 
+            type="button" 
+            className="clear-button"
+            style={this.state.input ? {} : {display: 'none'}} 
+            onClick={() => this.setState({input: ''})}>
+            &times;
+          </button>
           <span className="input-group-btn">
             <button className="btn btn-default" type="button" onClick={this.handleSearch}>搜索</button>
           </span>

@@ -25,7 +25,7 @@ class Progressbar extends Component {
         <span className="total">{convertTime(this.props.total)}</span>
         <div className="progress progress-slim" ref={bar => this.progressbar = bar} onClick={this.handleClick}>
           <div 
-            className="progress-bar progress-bar-info"
+            className="progress-bar progress-bar-success"
             style={{width: `${this.props.time / this.props.total * 100}%`}}>
           </div>
         </div>

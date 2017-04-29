@@ -5,13 +5,31 @@
   bottom: 0;
   padding-top: 6px;
   padding-bottom: 6px;
-  background-color: #fff;
+  color: #fff;
+  background-color: #1565c0;
+  box-shadow: 0 1px 5px 1px #888;
+}
+
+.avatar-container {
+  text-align: center;
 }
 
 .avatar {
   width: 64px;
   height: 64px;
   border-radius: 64px;
+  box-shadow: 0 0 5px 2px;
+
+  animation: roll 20s linear infinite;
+}
+
+@keyframes roll {
+  0% { transform: rotate(0); }
+  100% { transform: rotate(360deg); }
+}
+
+.avatar.paused {
+  animation-play-state: paused;
 }
 
 .song-info {
@@ -33,21 +51,45 @@
   margin-bottom: 0;
 }
 
+.player-controls {
+  padding-top: 15px;
+  text-align: center;
+}
+
 .btn-play {
-  margin-top: 15px;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: 1px solid #fff;
+  border-radius: 50% 50%;
 }
 
-@media screen and (max-width: 768px) {
-  .btn-play {
-    padding: 4px 8px;
-  }
+.btn-play:not(:last-child) {
+  margin-right: 5px;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 460px) {
   .col-xs-2, 
   .col-xs-3, 
   .col-xs-7 {
     padding-right: 6px;
     padding-left: 6px;
+  }
+
+  .btn-play:not(:last-child) {
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .avatar {
+    width: 48px;
+    height: 48px;
+    margin: 8px;
+  }
+
+  .btn-play {
+    width: 30px;
+    height: 30px;
   }
 }

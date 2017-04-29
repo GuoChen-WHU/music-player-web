@@ -10,16 +10,16 @@ import '../styles/MiniPlayer';
 const MiniPlayer = ({ name, singer, image, paused }) => (
   <div className="MiniPlayer container-fluid">
     <div className="row">
-      <div className="col-xs-2">
-        <img src={image} alt="avatar" className="avatar"/>
+      <div className="col-xs-2 avatar-container">
+        <img src={image} alt="avatar" className={paused ? 'avatar paused' : 'avatar'}/>
       </div>
       <div className="col-xs-7">
         <h4 className="song-info">{`${singer}-${name}`}</h4>
         <Progressbar />
       </div>
-      <div className="col-xs-3">
+      <div className="col-xs-3 player-controls">
         <button
-          className="btn btn-default btn-play" 
+          className="btn-play" 
           type="button" 
           onClick={() => {
             paused ? EventEmitter.trigger('audio.play') : EventEmitter.trigger('audio.pause');
@@ -27,7 +27,7 @@ const MiniPlayer = ({ name, singer, image, paused }) => (
           {paused ? <FaPlay /> : <FaPause />}
         </button>
         <button
-          className="btn btn-default btn-play" 
+          className="btn-play" 
           type="button"
           onClick={() => EventEmitter.trigger('list.toggle')}> 
           <FaListUl />
