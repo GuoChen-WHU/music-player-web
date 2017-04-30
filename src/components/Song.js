@@ -15,6 +15,7 @@ class Song extends Component {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     singer: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     setSongInfo: PropTypes.func,
     addToList: PropTypes.func,
@@ -26,12 +27,11 @@ class Song extends Component {
       id: this.props.id,
       name: this.props.name,
       singer: this.props.singer,
+      url: this.props.url,
       image: this.props.image
     };
     this.props.setSongInfo(song);
     EventEmitter.trigger('audio.play');
-    // Add to history
-    this.props.addToHistory(song);
     // Add the song to list
     this.props.addToList(song);
   }
@@ -41,6 +41,7 @@ class Song extends Component {
       id: this.props.id,
       name: this.props.name,
       singer: this.props.singer,
+      url: this.props.url,
       image: this.props.image
     };
     EventEmitter.trigger('panel.show', song);

@@ -16,6 +16,7 @@ class ListItem extends Component {
     id: PropTypes.string,
     name: PropTypes.string,
     singer: PropTypes.string,
+    url: PropTypes.string,
     image: PropTypes.string,
     toggleList: PropTypes.func,
     // from store
@@ -31,12 +32,11 @@ class ListItem extends Component {
       id: this.props.id,
       name: this.props.name,
       singer: this.props.singer,
+      url: this.props.url,
       image: this.props.image
     };
     this.props.setSongInfo(song);
     EventEmitter.trigger('audio.play');
-    // add to history
-    this.props.addToHistory(song);
     // hide list
     this.props.toggleList();
   }
@@ -46,6 +46,7 @@ class ListItem extends Component {
       id: this.props.id,
       name: this.props.name,
       singer: this.props.singer,
+      url: this.props.url,
       image: this.props.image
     };
     this.props.addToCollection(song);

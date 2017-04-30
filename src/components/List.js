@@ -32,6 +32,7 @@ class List extends Component {
               id={song.id} 
               name={song.name} 
               singer={song.singer}
+              url={song.url}
               image={song.image}
               toggleList={this.handleToggle} />
           )}

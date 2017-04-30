@@ -37,20 +37,6 @@
   margin-bottom: 5px;
 }
 
-.progress-slim {
-  height: 5px;
-  cursor: pointer;
-}
-
-.total {
-  position: absolute;
-  right: 15px;
-}
-
-.progress {
-  margin-bottom: 0;
-}
-
 .player-controls {
   padding-top: 15px;
   text-align: center;

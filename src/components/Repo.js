@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Song from './Song';
 import Trends from './Trends';
-import { search, getImageUrl } from '../services/api';
+import { search } from '../services/api';
 import '../styles/Repo';
 
 class Repo extends Component {
@@ -52,11 +52,12 @@ class Repo extends Component {
         <ul className="list-group results">
           {this.state.list.map(info => 
             <Song 
-              key={info.docid}
-              id={info.f.split('|')[0]}
-              name={info.fsong}
-              singer={info.fsinger}
-              image={getImageUrl(info.f)}/>
+              key={info.id}
+              id={info.id}
+              name={info.name}
+              singer={info.singer}
+              url={info.url}
+              image={info.image}/>
             )
           }
         </ul>

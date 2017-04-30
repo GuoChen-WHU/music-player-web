@@ -18,6 +18,7 @@ class CollectionItem extends Component {
     id: PropTypes.string,
     name: PropTypes.string,
     singer: PropTypes.string,
+    url: PropTypes.url,
     image: PropTypes.string,
     setSongInfo: PropTypes.func,
     addToList: PropTypes.func,
@@ -30,6 +31,7 @@ class CollectionItem extends Component {
       id: this.props.id,
       name: this.props.name,
       singer: this.props.singer,
+      url: this.props.url,
       image: this.props.image
     };
     this.props.setSongInfo(song);
@@ -43,6 +45,7 @@ class CollectionItem extends Component {
       id: this.props.id,
       name: this.props.name,
       singer: this.props.singer,
+      url: this.props.url,
       image: this.props.image
     };
     this.props.addToList(song);

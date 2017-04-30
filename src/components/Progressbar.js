@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import convertTime from '../util/convertTime';
 import EventEmitter from '../util/EventEmitter';
+import '../styles/Progressbar';
 
 class Progressbar extends Component {
 

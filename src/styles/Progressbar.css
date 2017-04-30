@@ -1,0 +1,17 @@
+.total {
+  position: absolute;
+  right: 15px;
+}
+
+.progress {
+  margin-bottom: 0;
+}
+
+.progress-slim {
+  height: 5px;
+  cursor: pointer;
+}
+
+.progress-bar {
+  transition-duration: .3s;
+}

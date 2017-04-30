@@ -9,7 +9,6 @@ import {
   setSongInfo 
 } from '../actions/player';
 import { addToHistory } from '../actions/history';
-import { getAudioUrl } from '../services/api';
 
 class Audio extends Component {
   static propTypes = {
@@ -43,7 +42,7 @@ class Audio extends Component {
   }
 
   handlePlay = () => {
-    this.play();
+    this.audioEle.play();
     this.timer = setInterval(() => this.props.setTime(this.audioEle.currentTime), 500);
     this.props.togglePaused(false);
   }
@@ -59,14 +58,14 @@ class Audio extends Component {
     this.props.setTime(time);
   }
 
-  play = () => {
-    this.audioEle.play();
-    // add to history
-    this.props.addToHistory({
-      id: this.props.id,
-      name: this.props.name,
-      singer: this.props.singer,
-      image: this.props.image
+  componentWillReceiveProps(nextProps) {
+    // when switch to another song, add it to history
+    this.props.id !== nextProps.id && this.props.addToHistory({
+      id: nextProps.id,
+      name: nextProps.name,
+      singer: nextProps.singer,
+      url: nextProps.url,
+      image: nextProps.image
     });
   }
 
@@ -78,18 +77,18 @@ class Audio extends Component {
       case 'order':
         if (index < this.props.list.length - 1) {
           this.props.setSongInfo(this.props.list[++index]);
-          this.play();
+          this.audioEle.play();
           break;
         }
         this.props.togglePaused(true);
         break;
       case 'repeat':
-        this.play();
+        this.audioEle.play();
         break;
       case 'random':
         let random = Math.floor((this.props.list.length - 1) * Math.random());
         this.props.setSongInfo(this.props.list[random]);
-        this.play();
+        this.audioEle.play();
         break;
     }
   }
@@ -101,7 +100,7 @@ class Audio extends Component {
   render() {
     return (
       <audio 
-        src={getAudioUrl(this.props.id)}
+        src={this.props.url}
         ref={audio => { this.audioEle = audio; }}
         autoPlay={!this.props.paused}>
       </audio>
@@ -114,6 +113,7 @@ const mapStateToProps = (state) => ({
   name: state.player.name,
   singer: state.player.singer,
   image: state.player.image,
+  url: state.player.url,
   paused: state.player.paused,
   mode: state.player.mode,
   list: state.list
