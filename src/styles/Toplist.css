@@ -1,0 +1,4 @@
+.top-song-info {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
