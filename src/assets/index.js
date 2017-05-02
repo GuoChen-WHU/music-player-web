@@ -6,3 +6,5 @@ export const toplistImgs = [
   require('./toplist_4.jpg'),
   require('./toplist_5.jpg')
 ];
+
+export const logo = require('./logo.png');

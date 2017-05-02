@@ -12,11 +12,12 @@ import { addToHistory } from '../actions/history';
 
 class Audio extends Component {
   static propTypes = {
-    id: PropTypes.string.isRequired,
+    id: PropTypes.string,
     name: PropTypes.string,
     singer: PropTypes.string,
+    url: PropTypes.string,
     image: PropTypes.string,
-    paused: PropTypes.bool.isRequired,
+    paused: PropTypes.bool,
     setTime: PropTypes.func,
     setTotalTime: PropTypes.func,
     togglePaused: PropTypes.func,
@@ -42,9 +43,14 @@ class Audio extends Component {
   }
 
   handlePlay = () => {
-    this.audioEle.play();
+    this.playAudio();
     this.timer = setInterval(() => this.props.setTime(this.audioEle.currentTime), 500);
     this.props.togglePaused(false);
+  }
+
+  // async to wait src be set properly
+  playAudio = () => {
+    setTimeout(() => this.audioEle.play(), 0);
   }
 
   handlePause = () => {
@@ -77,18 +83,18 @@ class Audio extends Component {
       case 'order':
         if (index < this.props.list.length - 1) {
           this.props.setSongInfo(this.props.list[++index]);
-          this.audioEle.play();
+          this.playAudio();
           break;
         }
         this.props.togglePaused(true);
         break;
       case 'repeat':
-        this.audioEle.play();
+        this.playAudio();
         break;
       case 'random':
         let random = Math.floor((this.props.list.length - 1) * Math.random());
         this.props.setSongInfo(this.props.list[random]);
-        this.audioEle.play();
+        this.playAudio();
         break;
     }
   }

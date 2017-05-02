@@ -7,7 +7,7 @@ import Progressbar from './Progressbar';
 import EventEmitter from '../util/EventEmitter';
 import '../styles/MiniPlayer';
 
-const MiniPlayer = ({ name, singer, image, paused }) => (
+const MiniPlayer = ({ name, singer, url, image, paused }) => (
   <div className="MiniPlayer container-fluid">
     <div className="row">
       <div className="col-xs-2 avatar-container">
@@ -23,7 +23,8 @@ const MiniPlayer = ({ name, singer, image, paused }) => (
           type="button" 
           onClick={() => {
             paused ? EventEmitter.trigger('audio.play') : EventEmitter.trigger('audio.pause');
-          }}>
+          }}
+          disabled={!url}>
           {paused ? <FaPlay /> : <FaPause />}
         </button>
         <button
@@ -40,6 +41,7 @@ const MiniPlayer = ({ name, singer, image, paused }) => (
 const mapStateToProps = (state) => ({
   name: state.player.name,
   singer: state.player.singer,
+  url: state.player.url,
   image: state.player.image,
   paused: state.player.paused
 });
