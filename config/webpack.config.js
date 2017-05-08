@@ -14,11 +14,11 @@ var staticPath = path.join(rootPath, 'static');
 
 var entry = PRODUCTION
     ? {
-        app: path.join(srcPath, 'app.js'),
+        app: path.join(srcPath, 'index.js'),
         vendor: [
           'prop-types',
           'react',
-          'react-addons-css-transition-group',
+          'react-transition-group',
           'react-dom',
           'redux',
           'redux-thunk',
@@ -28,7 +28,7 @@ var entry = PRODUCTION
         ]
       }
     : [
-      path.join(srcPath, 'app.js'),
+      path.join(srcPath, 'index.js'),
       'webpack/hot/dev-server',
       'webpack-dev-server/client?http://localhost:8080'
     ];

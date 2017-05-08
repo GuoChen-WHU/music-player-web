@@ -11,7 +11,7 @@ const MOUNT_NODE = document.getElementById('app');
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <Route path="/" component={App} />
+      <Route component={App} />
     </BrowserRouter>
   </Provider>,
   MOUNT_NODE
