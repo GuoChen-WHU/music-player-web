@@ -1,4 +1,67 @@
-.top-song-info {
-  white-space: nowrap;
-  text-overflow: ellipsis;
+.toplist-header {
+  height: 200px;
+  background-position: 100px 0;
+  background-repeat: no-repeat;
+  box-shadow: 0 2px 5px 2px #aaa;
+}
+
+.toplist-header-0 {
+  background-image: url(http://p4.music.126.net/N2HO5xfYEqyQ8q6oxCw8IQ==/18713687906568048.jpg?param=200y200);
+}
+
+.toplist-header-1 {
+  background-image: url(http://p4.music.126.net/GhhuF6Ep5Tq9IEvLsyCN7w==/18708190348409091.jpg?param=200y200);
+}
+
+.toplist-header-2 {
+  background-image: url(http://p4.music.126.net/sBzD11nforcuh1jdLSgX7g==/18740076185638788.jpg?param=200y200);
+}
+
+.toplist-header-3 {
+  background-image: url(http://p3.music.126.net/DrRIg6CrgDfVLEph9SNh7w==/18696095720518497.jpg?param=200y200);
+}
+
+.toplist-header-4 {
+  background-image: url(http://p3.music.126.net/4mh2HWH-bd5sRufQb-61bg==/3302932937414659.jpg?param=200y200);
+}
+
+.toplist-header-5 {
+  background-image: url(http://p3.music.126.net/EBRqPmY8k8qyVHyF8AyjdQ==/18641120139148117.jpg?param=200y200);
+}
+
+.btn-back {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 24px;
+  color: #fff;
+}
+
+.btn-back:hover {
+  color: #ddd;
+}
+
+.toplist-title {
+  position: absolute;
+  top: 16px;
+  left: 130px;
+  font-style: oblique;
+  color: #fff;
+}
+
+.toplist-list {
+  position: absolute;
+  top: 202px;
+  bottom: 76px;
+  margin-bottom: 0;
+  overflow-y: scroll;
+}
+
+.toplist-list::-webkit-scrollbar {
+  display: none;
+}
+
+.player {
+  height: 100px;
+
 }

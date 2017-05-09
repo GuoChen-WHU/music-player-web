@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';
 import store from './store/configStore';
 import App from './components/App';
-import './styles/scaffold';
 
 const MOUNT_NODE = document.getElementById('app');
 

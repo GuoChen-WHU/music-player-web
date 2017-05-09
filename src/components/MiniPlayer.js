@@ -1,14 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import FaPlay from 'react-icons/fa/play';
 import FaPause from 'react-icons/fa/pause';
 import FaListUl from 'react-icons/fa/list-ul';
 import Progressbar from './Progressbar';
 import EventEmitter from '../util/EventEmitter';
+import mapLocationToBgColor from '../util/mapLocationToBgColor';
 import '../styles/MiniPlayer';
 
-const MiniPlayer = ({ name, singer, url, image, paused }) => (
-  <div className="MiniPlayer container-fluid">
+const MiniPlayer = ({ name, singer, url, image, paused, location }) => (
+  <div className="MiniPlayer container-fluid" style={{backgroundColor: mapLocationToBgColor[location.pathname]}}>
     <div className="row">
       <div className="col-xs-2 avatar-container">
         <img src={image} alt="avatar" className={paused ? 'avatar paused' : 'avatar'}/>
@@ -46,7 +48,7 @@ const mapStateToProps = (state) => ({
   paused: state.player.paused
 });
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps, 
   null
-)(MiniPlayer);
+)(MiniPlayer));

@@ -15,24 +15,25 @@ class Navbar extends Component {
   }
 
   render() {
-    const { location } = this.props;
+    const { match, location } = this.props;
+    const currentTab = location.pathname.match(/\/(\w+)$/)[1];
 
     return (
       <nav className="container-fluid">
-        <span className="nav-button"><a href="#" onClick={() => EventEmitter.trigger('sidebar.toggle')}><FaBars/></a></span>
+        <span className="nav-button" onClick={() => EventEmitter.trigger('sidebar.toggle')}><FaBars/></span>
         <ul className="nav">
-          <li className={location.pathname === '/mine' ? 'nav-item current' : 'nav-item'}>
-            <Link to="/mine">我的</Link>
+          <li className={currentTab === 'mine' ? 'nav-item current' : 'nav-item'}>
+            <Link to={`${match.url}/mine`}>我的</Link>
           </li>
-          <li className={location.pathname === '/search' ? 'nav-item current' : 'nav-item'}>
-            <Link to="/search">乐库</Link>
+          <li className={currentTab === 'search' ? 'nav-item current' : 'nav-item'}>
+            <Link to={`${match.url}/search`}>乐库</Link>
           </li>
-          <li className={location.pathname === '/explore' ? 'nav-item current' : 'nav-item'}>
-            <Link to="/explore">发现</Link>
+          <li className={currentTab === 'explore' ? 'nav-item current' : 'nav-item'}>
+            <Link to={`${match.url}/explore`}>发现</Link>
           </li>
           <li className="move"></li>
         </ul>
-        <span className="nav-button nav-button-right"><Link to="/search"><FaSearch /></Link></span>
+        <span className="nav-button nav-button-right"><Link to={`${match.url}/search`}><FaSearch /></Link></span>
       </nav>
     );
   }

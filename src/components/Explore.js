@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Spinner from './Spinner';
-import Toplist from './Toplist';
+import ToplistInfo from './ToplistInfo';
 import { getToplist } from '../services/api'; 
 import '../styles/Explore';
 
@@ -24,20 +24,21 @@ class Explore extends Component {
   }
 
   render() {
-    return this.state.toplists.length ? 
+    let isFetching = !this.state.toplists.length;
+    return isFetching ?
+      <Spinner /> : 
       (
         <div className="container-fluid Explore">
           <h3 className="title">排行榜</h3>
           {this.state.toplists.map((list, index) => 
-            <Toplist
+            <ToplistInfo
               key={index}
               id={index}
               top3={list}
             />
           )}
         </div>
-      ) :
-      <Spinner />;
+      );
   }
 }
 
