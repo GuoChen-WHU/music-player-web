@@ -1,4 +1,4 @@
-const serverUrl = 'http://112.74.90.33:3000/';
+const serverUrl = 'https://www.guochen.site/';
 
 export const searchUrl = serverUrl + 'api/search/';
 export const toplistUrl = serverUrl + 'api/toplist/';

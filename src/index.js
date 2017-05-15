@@ -9,7 +9,7 @@ const MOUNT_NODE = document.getElementById('app');
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <BrowserRouter basename="/music-player-web">
       <Route component={App} />
     </BrowserRouter>
   </Provider>,

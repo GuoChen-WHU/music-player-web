@@ -1,6 +1,10 @@
 # Music Player
 
-A music player running in browsers, build with react.
+音乐播放器.
+
+## 技术栈
+
+React + Redux + React Router
 
 # License
 
