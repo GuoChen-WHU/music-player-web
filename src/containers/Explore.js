@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Spinner from './Spinner';
-import ToplistInfo from './ToplistInfo';
+import Spinner from '../components/Spinner';
+import ToplistInfo from '../components/ToplistInfo';
 import { getToplist } from '../services/api'; 
 import '../styles/Explore';
 

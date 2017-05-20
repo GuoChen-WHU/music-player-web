@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { search } from '../services/api';
 import '../styles/Trends';
 
 class Trends extends Component {
   static propTypes = {
-    trends: PropTypes.array,
-    setResultList: PropTypes.func
+    trends: PropTypes.array.isRequired,
+    searchByKeyword: PropTypes.func.isRequired
   }
 
   handleClick = e => {
-    search(e.target.innerText).then(list => this.props.setResultList(list));
+    this.props.searchByKeyword(e.target.innerText);
   }
 
   render() {
@@ -30,11 +28,4 @@ class Trends extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  trends: state.trends
-});
-
-export default connect(
-  mapStateToProps,
-  null
-)(Trends);
+export default Trends;

@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import Home from './Home';
-import Toplist from './Toplist';
-import Audio from './Audio';
-import MiniPlayer from './MiniPlayer';
-import List from './List';
-import OperationPanel from './OperationPanel';
+import Audio from '../containers/Audio';
+import Toplist from '../containers/Toplist';
+import MiniPlayer from '../containers/MiniPlayer';
+import List from '../containers/List';
+import OperationPanel from '../containers/OperationPanel';
 import '../styles/App';
 
 const App = () => (

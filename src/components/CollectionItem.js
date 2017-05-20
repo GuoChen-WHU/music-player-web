@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import FaPlus from 'react-icons/fa/plus';
 import FaHeartO from 'react-icons/fa/heart-o';
 import FaBan from 'react-icons/fa/ban';
-
-import { setSongInfo } from '../actions/player';
-import { addToList } from '../actions/list';
-import { removeFromCollection } from '../actions/collection';
 
 import EventEmitter from '../util/EventEmitter';
 
@@ -72,13 +67,4 @@ class CollectionItem extends Component {
   }
 }
 
-const mapDispatchToProps = {
-  setSongInfo,
-  addToList,
-  removeFromCollection
-};
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(CollectionItem);
+export default CollectionItem;

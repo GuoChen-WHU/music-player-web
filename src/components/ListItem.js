@@ -1,25 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import FaHeartO from 'react-icons/fa/heart-o';
 import FaBan from 'react-icons/fa/ban';
-import { setSongInfo } from '../actions/player';
-import { removeFromList } from '../actions/list';
-import { addToHistory } from '../actions/history';
-import { addToCollection } from '../actions/collection';
 import EventEmitter from '../util/EventEmitter';
 import '../styles/ListItem';
 
 class ListItem extends Component {
   static propTypes = {
-    // from parent component - List
     id: PropTypes.string,
     name: PropTypes.string,
     singer: PropTypes.string,
     url: PropTypes.string,
     image: PropTypes.string,
     toggleList: PropTypes.func,
-    // from store
     setSongInfo: PropTypes.func,
     removeFromList: PropTypes.func,
     addToHistory: PropTypes.func,
@@ -71,14 +64,4 @@ class ListItem extends Component {
   }
 }
 
-const mapDispatchToProps = {
-  setSongInfo,
-  removeFromList,
-  addToHistory,
-  addToCollection
-};
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(ListItem);
+export default ListItem;

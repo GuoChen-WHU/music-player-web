@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import FaChevronLeft from 'react-icons/fa/chevron-left';
-import Song from './Song';
+import Song from '../components/Song';
 import { getToplist } from '../services/api'; 
 import mapLocationToBgColor from '../util/mapLocationToBgColor';
 import '../styles/Toplist';

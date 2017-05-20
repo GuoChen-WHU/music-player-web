@@ -4,8 +4,8 @@ import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import Sidebar from './Sidebar';
 import Navbar from './Navbar';
 import Mine from './Mine';
-import Repo from './Repo';
-import Explore from './Explore';
+import Repo from '../containers/Repo';
+import Explore from '../containers/Explore';
 import '../styles/Home';
 
 const Home = ({ match, location }) => (

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import convertTime from '../util/convertTime';
 import EventEmitter from '../util/EventEmitter';
 import '../styles/Progressbar';
@@ -35,12 +34,4 @@ class Progressbar extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  time: state.player.time,
-  total: state.player.total
-});
-
-export default connect(
-  mapStateToProps, 
-  null
-)(Progressbar);
+export default Progressbar;

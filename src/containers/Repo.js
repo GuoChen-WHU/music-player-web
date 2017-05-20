@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Song from './Song';
-import Trends from './Trends';
+import { connect } from 'react-redux';
+import Song from '../components/Song';
+import Trends from '../components/Trends';
 import { search } from '../services/api';
 import '../styles/Repo';
 
@@ -17,12 +18,8 @@ class Repo extends Component {
     this.setState({input: e.target.value});
   }
 
-  handleSearch = e => {
-    search(this.state.input).then(list => this.setState({list: list}));
-  }
-
-  setResultList = list => {
-    this.setState({list: list});
+  searchByKeyword = keyword => {
+    search(keyword).then(list => this.setState({list: list}));
   }
 
   render() {
@@ -43,11 +40,16 @@ class Repo extends Component {
             &times;
           </button>
           <span className="input-group-btn">
-            <button className="btn btn-default" type="button" onClick={this.handleSearch}>搜索</button>
+            <button 
+              className="btn btn-default" 
+              type="button" 
+              onClick={() => this.searchByKeyword(this.state.input)}>
+              搜索
+            </button>
           </span>
         </div>
 
-        <Trends setResultList={this.setResultList}/>
+        <Trends trends={this.props.trends} searchByKeyword={this.searchByKeyword}/>
 
         <ul className="list-group results">
           {this.state.list.map(info => 
@@ -66,4 +68,11 @@ class Repo extends Component {
   }
 }
 
-export default Repo;
+const mapStateToProps = state => ({
+  trends: state.trends
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(Repo);

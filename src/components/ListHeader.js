@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 
 import FaLevelDown from 'react-icons/fa/level-down';
 import FaRepeat from 'react-icons/fa/repeat';
 import FaRandom from 'react-icons/fa/random';
 import FaPlus from 'react-icons/fa/plus';
 import FaTrash from 'react-icons/fa/trash';
-
-import { setMode } from '../actions/player';
-import { cleanList } from '../actions/list';
 
 import '../styles/ListHeader';
 
@@ -22,9 +18,10 @@ const mapToNextMode = {
 class ListHeader extends Component {
 
   static propTypes = {
-    mode: PropTypes.string,
-    setMode: PropTypes.func,
-    num: PropTypes.number
+    mode: PropTypes.string.isRequired,
+    num: PropTypes.number.isRequired,
+    setMode: PropTypes.func.isRequired,
+    cleanList: PropTypes.func.isRequired
   }
 
   handleModeChange = e => {
@@ -74,16 +71,4 @@ class ListHeader extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  mode: state.player.mode
-});
-
-const mapDispatchToProps = {
-  setMode,
-  cleanList
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ListHeader);
+export default ListHeader;

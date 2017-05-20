@@ -1,8 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import FaMusic from 'react-icons/fa/music';
-import History from './History';
-import Collection from './Collection';
+import History from '../containers/History';
+import Collection from '../containers/Collection';
 import '../styles/Mine';
 
 const Mine = () => (
@@ -29,9 +28,5 @@ const Mine = () => (
     </div>
   </div>
 );
-
-const mapStateToProps = state => ({
-  history: state.history
-});
 
 export default Mine;

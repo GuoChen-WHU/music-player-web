@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import FaPlus from 'react-icons/fa/plus';
 import FaHeartO from 'react-icons/fa/heart-o';
 import FaBan from 'react-icons/fa/ban';
-
-import { setSongInfo } from '../actions/player';
-import { addToList } from '../actions/list';
-import { removeFromHistory } from '../actions/history';
-import { addToCollection } from '../actions/collection';
 
 import EventEmitter from '../util/EventEmitter';
 
@@ -87,14 +81,4 @@ class HistoryItem extends Component {
   }
 }
 
-const mapDispatchToProps = {
-  setSongInfo,
-  addToList,
-  addToCollection,
-  removeFromHistory
-};
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(HistoryItem);
+export default HistoryItem;
